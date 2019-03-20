@@ -9,34 +9,36 @@
         <div class="container" style="margin:20px">
             <div class="row">
                 <div class="col-lg-10 offset-lg-2">                    
-                    <form class="row">
+                    <form #f="ngForm" class="row">
                         <div class="form-group col-lg-4">
-                            <label for="exampleInputEmail1" ([ngModel])="nome">Nome</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nome">
+                            <label for="exampleInputEmail1"  >Nome</label>
+                            <input type="text" [(ngModel)]="nome" name="nome" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nome">
                         </div>
                         <div class="form-group col-lg-2">
-                            <label for="exampleInputPassword1" ([ngModel])="idade" >Idade</label>
-                            <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Idade">
+                            <label for="exampleInputPassword1"  >Idade</label>
+                            <input type="number" [(ngModel)]="idade" name="idade" class="form-control" id="exampleInputPassword1" placeholder="Idade">
                         </div>
                         <div class="form-group col-lg-6">
-                            <label for="exampleInputPassword1" ([ngModel])="cpf">cpf</label>
-                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="cpf">
+                            <label for="exampleInputPassword1" >cpf</label>
+                            <input type="text" [(ngModel)]="cpf"  name="cpf" class="form-control" id="exampleInputPassword1" placeholder="cpf">
                             <small id="emailHelp" class="form-text text-muted">Este será o nome de usuário da plataforma.</small>
                         </div>
                         <div class="form-group col-lg-6">
-                            <label for="exampleFormControlSelect1" ([ngModel])="permissao">Permissão</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect1">Permissão</label>
+                            <select class="form-control"  [(ngModel)]="permissao" name="permissao" id="exampleFormControlSelect1">
                                 <option value="Usuário interno">Usuário interno</option>
                                 <option value="Cliente">Cliente</option>
                                 <option value="Administrador">Administrador</option>
                             </select>
                         </div>
                         <div class="form-group col-lg-6">
-                            <label for="exampleInputPassword1" ([ngModel])="senha">Senha</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
+                            <label for="exampleInputPassword1" >Senha</label>
+                            <input type="password" [(ngModel)]="senha" name="senha" class="form-control" id="exampleInputPassword1" placeholder="Senha">
                         </div>
                         <div class="col-lg-12">
-                            <div  (click)="saveUser()" class="btn btn-success pull-right">Salvar</div>
+                            <div *ngIf="isNew"  (click)="saveUser()" class="btn btn-success pull-right">Salvar</div>
+                            <div *ngIf="isEdit == true"  (click)="cancel()" class="btn btn-default pull-right">Cancel</div>
+                            <div *ngIf="isEdit == true"  (click)="editUsuario()" class="btn btn-success pull-right">Editar</div>
                         </div>
                     </form>
                 </div>

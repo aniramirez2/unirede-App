@@ -10,22 +10,20 @@
     <div class="container" style="margin:20px">
         <div class="row">
             <div class="col-lg-8 offset-lg-3" style="margin-bottom:10px">
-                <button class="btn btn-success pull-right" [routerLink]="['/user']">
+                <button class="btn btn-success pull-right" [routerLink]="['/user', 'new']">
                     Adicionar Usuario
                 </button>
             </div>
             <div class="col-lg-8 offset-lg-3">
-                
+                <div class="col-lg-12" *ngIf="users == null || users.length ==0">
+                    <h1>Não há registros de usuários</h1>
+                </div>
                 <ul class="list-group">
-                    <li class="list-group-item">
-                        Cras justo odio 
-                        <button class="btn btn-info pull-right ">Editar</button>
-                        <button class="btn btn-danger pull-right mr-2">Eliminar</button>
+                    <li class="list-group-item" *ngFor="let user of users">
+                        {{user.nome }}
+                        <button class="btn btn-info pull-right " [routerLink]="['/user',user.cpf]" >Editar</button>
+                        <button class="btn btn-danger pull-right mr-2" (click)="removeUser(user.cpf)">Eliminar</button>
                     </li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Morbi leo risus</li>
-                    <li class="list-group-item">Porta ac consectetur ac</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
                 </ul>
             </div>
         </div>
